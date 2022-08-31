@@ -2,7 +2,7 @@
 import './App.css';
 import { NavLink, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
-import Pokemon from './Components/Pokemon';
+import Pokemon from './Components/pokemon';
 
 function App() {
 
