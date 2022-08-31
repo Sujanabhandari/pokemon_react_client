@@ -8,10 +8,10 @@ const Pokemon = ({ pokemons }) => {
           <h2>List of Pokemons</h2>
           {pokemons?.map((pokemon, index) => (
             <div
-              className="col-2 col-md-2 col-lg-2 hover-div mb-3 bg-light"
+              className="col-2 col-md-2 col-lg-2 hover-div bg-light border-style"
               key={index}
             >
-              <div className="card card-top hover-card m-0 " >
+              <div className="card card-top hover-card " >
                 
                 <div>
                   <a href="#" className="btn btn-light btn-sm">
