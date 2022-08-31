@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { NavLink, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import Pokemon from './Components/Pokemon';
 
 function App() {
+
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    fetch('https://pokemon-fight-app.onrender.com/pokemons').then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log("Error Occured")
+        }
+    }).then((data) => {
+      console.log("From Use Effect", data)
+        setPokemons(data);
+    }).catch((error) => {
+      console.log(error)
+    })
+}, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Pokemon App</h1>
+      {/* <Box sx={{ minWidth: 275 }}> */}
+      <Routes>
+        <Route path='/' element={<Pokemon pokemons={pokemons}/>} />
+      </Routes>
     </div>
   );
 }
