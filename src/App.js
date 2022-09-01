@@ -3,6 +3,7 @@ import './App.css';
 import { NavLink, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import Pokemon from './Components/pokemon';
+import SinglePokemon from './Components/singlepokemon';
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
       {/* <Box sx={{ minWidth: 275 }}> */}
       <Routes>
         <Route path='/' element={<Pokemon pokemons={pokemons}/>} />
+        <Route path='pokemons' element={<Pokemon pokemons={pokemons} />} />
+        <Route path='pokemons/:id' element={<SinglePokemon pokemons={pokemons} />} />
       </Routes>
     </div>
   );
