@@ -36,7 +36,7 @@ return (
                     <div>
                       <p>{pokemon.base.Attack}</p>
                     </div>
-                    <a href="#"><h3>Details</h3></a>
+                    <Link to={`/pokemons/${pokemon.id}/info`}><h3>Details</h3></Link>
                   </div>
                 </div>
               </div>
