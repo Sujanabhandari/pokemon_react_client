@@ -13,7 +13,7 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
 
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [query, setQuery] = useState("");
+  const [value, setValue] = useState({});
 
 
   useEffect(() => {
@@ -29,6 +29,7 @@ function App() {
       console.log("from results", json);
       if (acceptValue) {
         setPokemons(json);
+        // setSelectedOptions(json);
       }
     }
     // call the function
@@ -40,42 +41,44 @@ function App() {
     return () => acceptValue = false;
   }, [])
 
-  let result = [];
-  pokemons.map((pokemons) => result.push(pokemons.name.english));
+
+  let options = pokemons.map((pokemon) => {
+    return {label: pokemon.name.english, id: pokemon.id}
+  });
 
   useEffect(() => {
-    const results = [];
-    pokemons.filter((pokemon) => {
-      if (query == "") {
-        //if query is empty
-        console.log("empty");
-        return setSelectedOptions(pokemons);
-      } else if (pokemon.name.english.includes(query)) {
-        results.push(pokemon);
-        return setSelectedOptions(results);
-      }
-    });
-  }, [query]);
+    let results = pokemons;
+    // setSelectedOptions(pokemons);
+    // value empty and null and undefined
+    if (
+      value // 👈 null and undefined check
+      && Object.keys(value).length !== 0
+      && Object.getPrototypeOf(value) === Object.prototype
+    ) {
+      results = pokemons.filter((pokemon) => pokemon.id === value.id);
+      console.log("from filter", results);
+    }
+    setSelectedOptions(results);
+  }, [pokemons, value]);
 
   return (
     <div className="App">
       <Link to="/"><h1>Pokemon App</h1></Link>
 
       <Autocomplete
-    
-        onInputChange={(event, newInputValue) => {
-          setQuery(newInputValue);
+        onChange={(event, newValue) => {
+          setValue(newValue);
         }}
-
-        isOptionEqualToValue={(option, value) => option.code === value}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
         id="combo-box-demo"
-        options={result}
+        options={options}
         sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Controllable" />}
       />
 
       <Routes>
         <Route path="/" element={<Pokemon pokemons={selectedOptions} />} />
+
         <Route
           path="pokemons"
           element={<Pokemon pokemons={selectedOptions} />}
