@@ -3,13 +3,18 @@ import { useParams, Link, Outlet } from "react-router-dom";
 const PokemonDetails = ({ pokemons }) => {
   const { id } = useParams();
 
+  // const { id, info } = useParams();
+
+  // const clickedPokemon = pokemons?.filter((pokemon) => pokemon.id == id);
+  // console.log([id, info, clickedPokemon, pokemons]);
+
 
   const clickedPokemon = pokemons?.filter((pokemon) => pokemon.id == id);
-
+// const data = clickedPokemon.type;
 
   let nameResults = [];
   let baseResults = [];
-  let typeResults = [];
+
 
   clickedPokemon.map((pokeName) => {
     for (const [key, value] of Object.entries(pokeName.name)) {
@@ -24,11 +29,11 @@ const PokemonDetails = ({ pokemons }) => {
   });
   console.log(clickedPokemon.type);
 
-  clickedPokemon.map((pokeType) => {
-    typeResults.push(pokeType.type);
-  });
+  // clickedPokemon.map((pokeType) => {
+  //   typeResults.push(pokeType.type);
+  // });
 
-  console.log("Type", typeResults);
+  // console.log("Type", typeResults);
 
 
   return (
@@ -67,10 +72,15 @@ const PokemonDetails = ({ pokemons }) => {
                     </p>
                   ))}
                   <h2>Type</h2>
-                  
-                    <ul className="list-style-type: none">
-                      <li>{typeResults}</li>
-                    </ul> 
+                    {clickedPokemon.map(pokemontype => (
+                      <div>
+                        <ul className="list-style-type: none">
+                        <li>{pokemontype.type}</li>
+                       </ul> 
+                      </div>
+                       
+                    ))
+                   }
                   <br />
                 </div>
               </div>

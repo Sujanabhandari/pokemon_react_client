@@ -88,7 +88,7 @@ function App() {
           element={<SinglePokemon pokemons={pokemons} />}
         />
         <Route
-          path="pokemons/:id/:info"
+          path="pokemons/:id/info"
           element={<PokemonDetails pokemons={pokemons} />}
         />
       </Routes>

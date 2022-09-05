@@ -8,37 +8,11 @@ const Pokemon = ({ pokemons }) => {
 
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  
-
-  // const optionSelected = (events, value) => {
-  //   setSelectedOptions(value);
-  // }
-
-  // console.log(selectedOptions);
-
-  // let result=[]
-  // pokemons.map(pokemons => result.push(pokemons.name.english))
-  // console.log("from results", result);
-
   return (
     <>
       <div className="container">
         <div className="row ">
           <h2>List of Pokemons</h2>
-
-          {/* <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={result}
-            sx={{ width: 300 }}
-            renderInput={(params) => (
-              <div>
-                <TextField {...params} label="Pokemons" />
-              </div>
-            )}
-            onChange={optionSelected}
-          /> */}
-
           {pokemons?.map((pokemon, index) => (
             <div
               className="col-2 col-md-2 col-lg-2 hover-div bg-light border-style"
@@ -65,9 +39,7 @@ const Pokemon = ({ pokemons }) => {
                     ))}
 
                     <br />
-                    {/* <div>
-                      <p>{clickedPokemon.base.HP}</p>
-                    </div> */}
+                    
                   </div>
                 </div>
 
