@@ -18,7 +18,6 @@ function App() {
 
   useEffect(() => {
     let acceptValue = true;
-  
     // declare the async data fetching function
     const fetchData = async () => {
       // get the data from the api
@@ -64,17 +63,21 @@ function App() {
   return (
     <div className="App">
       <Link to="/"><h1>Pokemon App</h1></Link>
-
+      <div className="autoCenter">
       <Autocomplete
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
+        
         isOptionEqualToValue={(option, value) => option.id === value.id}
         id="combo-box-demo"
         options={options}
         sx={{ width: 300 }}
+        InputProps={{ style: { fontSize: 50 } }}
         renderInput={(params) => <TextField {...params} label="Controllable" />}
       />
+      </div>
+      
 
       <Routes>
         <Route path="/" element={<Pokemon pokemons={selectedOptions} />} />

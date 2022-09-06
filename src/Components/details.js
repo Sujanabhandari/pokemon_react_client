@@ -40,7 +40,7 @@ const PokemonDetails = ({ pokemons }) => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-6 col-md-6 col-lg-4 hover-div mb-3 bg-light border-style">
+          <div className="col-6 col-md-6 col-lg-4 hover-div bg-light border-styleFull">
             <div className="card card-top hover-card m-0">
               <div className="card-body">
                 <div className="row">
@@ -59,7 +59,7 @@ const PokemonDetails = ({ pokemons }) => {
             </div>
           </div>
 
-          <div className="col-6 col-md-6 col-lg-4 hover-div b- mb-3 bg-light border-style">
+          <div className="col-6 col-md-6 col-lg-4 hover-div b- mb-3 bg-light border-styleFull">
             <div className="card card-top hover-card m-0">
               <div className="card-body">
                 <div className="row">
