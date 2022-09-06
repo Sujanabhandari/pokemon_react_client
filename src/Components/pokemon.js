@@ -1,6 +1,13 @@
-import { useParams, Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import * as React from "react";
+import { useState } from "react";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const Pokemon = ({ pokemons }) => {
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
   return (
     <>
       <div className="container">
@@ -11,10 +18,14 @@ const Pokemon = ({ pokemons }) => {
               className="col-2 col-md-2 col-lg-2 hover-div bg-light border-style"
               key={index}
             >
-              <div className="card card-top hover-card " >
-                
+              <div className="card card-top hover-card ">
                 <div>
-                <Link to={`/pokemons/${pokemon.id}`} className="text-decoration-none"><h4>{pokemon.name.english}</h4></Link>
+                  <Link
+                    to={`/pokemons/${pokemon.id}`}
+                    className="text-decoration-none"
+                  >
+                    <h4>{pokemon.name.english}</h4>
+                  </Link>
                 </div>
 
                 <div className="card-body">
@@ -28,15 +39,15 @@ const Pokemon = ({ pokemons }) => {
                     ))}
 
                     <br />
-                    {/* <div>
-                      <p>{clickedPokemon.base.HP}</p>
-                    </div> */}
+                    
                   </div>
                 </div>
 
-                {/* <div className="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                  <div className="views">Name is {pokemon.name.french}</div>
-                </div> */}
+                <div className="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                  <Link to={`/pokemons/${pokemon.id}/info`}>
+                    <h5>Details</h5>
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
@@ -46,6 +57,3 @@ const Pokemon = ({ pokemons }) => {
   );
 };
 export default Pokemon;
-
-
-

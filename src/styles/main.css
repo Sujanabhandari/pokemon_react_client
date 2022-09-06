@@ -60,4 +60,18 @@
 
 .border-style {
   border: solid 1px #ddd;
+  height: 20vh;
+  margin: 6px;
+}
+
+.border-styleFull {
+  border: solid 1px #ddd;
+  height: 50vh;
+  margin: 6px;
+}
+.autoCenter{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
