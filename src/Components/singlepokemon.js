@@ -4,9 +4,8 @@ import { useParams, Link, Outlet } from "react-router-dom";
 const SinglePokemon = ({ pokemons }) => {
 
   const { id } = useParams();
-  const clickedPokemon = pokemons?.filter((pokemon) => pokemon.id == id);
+  const clickedPokemon = pokemons?.filter((pokemon) => pokemon.id === +id);
   
- 
 
 return (
     <>

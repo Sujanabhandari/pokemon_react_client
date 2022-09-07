@@ -14,11 +14,14 @@ const PokemonDetails = ({ pokemons }) => {
   // const { }
   // let systemPokemon
   let playerAttackRate, systemAttackRate = 0;
+  
   let systemPokemonId = -1;
 
   const playerPokemon = pokemons?.filter((pokemon) => pokemon.id == id)[0];
+
+
   const startGame = () => {
-    // endGame();
+    endGame();
     systemPokemonId = getRandomInt(pokemons.length);
     setSystemPokemon(pokemons[systemPokemonId]);
 
@@ -27,22 +30,21 @@ const PokemonDetails = ({ pokemons }) => {
 
     playInterval = setInterval(play, config.timelapse);
     console.log(playInterval);
-  
   }
-  console.log(playerPokemon.base["HP"])
+
+  // console.log(playerPokemon.base["HP"])
 
   const endGame = () => {
-    // if(playerPokemon?.name.english==="Venusaur") alert ("You are winner");   
-    console.log("System", systemPokemon.base.HP)
-    console.log("Player", playerPokemon.base["HP"])
 
-    if(playerPokemon.base["HP"] > systemPokemon.base["HP"]) alert ("You are winner your type is greater");
-    else alert("System Wins")
+    // if(playerPokemon?.name.english==="Venusaur") alert ("You are winner");   
+    // console.log("System", systemPokemon.base.HP)
+    // console.log("Player", playerPokemon.base["HP"])
+
+    // if(playerPokemon.base["HP"] > systemPokemon.base["HP"]) alert ("You are winner your type is greater");
+    // else alert("System Wins");
 
     console.log("CLICKED");
-    console.log(playInterval);
     clearInterval(playInterval);
-    console.log(playInterval);
   }
 
   const play = () => {

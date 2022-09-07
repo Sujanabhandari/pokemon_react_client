@@ -4,9 +4,8 @@ import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const Pokemon = ({ pokemons }) => {
+const Pokemon = ({ pokemons, pImages }) => {
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
 
   return (
     <>
@@ -18,18 +17,23 @@ const Pokemon = ({ pokemons }) => {
               className="col-2 col-md-2 col-lg-2 hover-div bg-light border-style"
               key={index}
             >
-              <div className="card card-top hover-card ">
+
+              <div className="card card-top hover-card card-height">
                 <div>
                   <Link
                     to={`/pokemons/${pokemon.id}`}
                     className="text-decoration-none"
                   >
                     <h4>{pokemon.name.english}</h4>
+
                   </Link>
+                  <div><img src={`${pImages}/${pokemon.id}.png`}  alt="Images"/></div>
                 </div>
 
                 <div className="card-body">
                   <div className="row">
+                    
+                  
                     {pokemon.type.map((pokemontype, index) => (
                       <div className="card-text p-height" key={index}>
                         <ul className="list-style-type: none">
