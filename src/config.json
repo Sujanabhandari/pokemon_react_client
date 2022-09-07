@@ -1,6 +1,7 @@
 
 {
-    "timelapse": 800,
+    "timelapse": 300,
+    "slowmo": 0.1,
     "spAttackRange": [3, 10],
     "spDefenceRange": [3, 10]
 }

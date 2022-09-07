@@ -60,15 +60,14 @@
 
 .border-style {
   border: solid 1px #ddd;
-  height: 35vh;
-  margin: 6px;
-  /* align-items: center; */
-}
+  /* height: 40vh;
+  margin: 1rem; */
+  
+} 
 .card-height{
   border: solid 1px #ddd;
-  /* margin-top: 10px; */
-  height: 35vh;
-  margin: 0 auto;
+  height: 100%;
+  width: auto;
 }
 
 .border-styleFull {
@@ -81,4 +80,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.navbar-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-design{
+  height:auto;
+  width: 150px;
 }

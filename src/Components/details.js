@@ -4,12 +4,10 @@ import { useState, useEffect } from "react";
 import config from "../config.json";
 
 let playInterval = undefined;
-let playerAttackRate,
-  systemAttackRate = 0;
 let systemPokemonId = -1;
-
 let playerPokemonCalc = {};
 let systemPokemonCalc = {};
+
 const winPoint = 0;
 
 const PokemonDetails = ({ pokemons, pImages }) => {
@@ -36,7 +34,7 @@ const PokemonDetails = ({ pokemons, pImages }) => {
     systemPokemonId = getRandomInt(pokemons.length);
 
     setSystemPokemon(pokemons[systemPokemonId]);
-    systemPokemonCalc =  JSON.parse(JSON.stringify(pokemons[systemPokemonId]));
+    systemPokemonCalc = JSON.parse(JSON.stringify(pokemons[systemPokemonId]));
     setSystemHp(systemPokemonCalc.base["HP"]);
 
     Object.assign(playerPokemonCalc, getInitalValues(playerPokemonCalc));
@@ -47,7 +45,6 @@ const PokemonDetails = ({ pokemons, pImages }) => {
   };
 
   const endGame = () => {
-    
     console.log("CLICKED");
     clearInterval(playInterval);
     // setWinMessage("New Game");
@@ -55,18 +52,21 @@ const PokemonDetails = ({ pokemons, pImages }) => {
 
   const play = () => {
     let apDamagePlayer =
-      playerPokemonCalc.base["Attack"] - systemPokemonCalc.base["Defense"];
-      //82-90 = -8
-
+      (playerPokemonCalc.base["Attack"] - systemPokemonCalc.base["Defense"]) * config.slowmo;
+    //82-90 = -8
+    console.log(apDamagePlayer);
     let apDamageSystem =
-      systemPokemonCalc.base["Attack"] - playerPokemonCalc.base["Defense"];
+      (systemPokemonCalc.base["Attack"] - playerPokemonCalc.base["Defense"]) * config.slowmo;
 
-    playerPokemonCalc.base["HP"] =
-      playerPokemonCalc.base["HP"] - apDamageSystem > 0 ? apDamageSystem : 0;
-      
-    systemPokemonCalc.base["HP"] =
-    //110 - (-8)
-      systemPokemonCalc.base["HP"] - apDamagePlayer > 0 ? apDamagePlayer : 0;
+      console.log(apDamageSystem);
+
+    apDamageSystem = apDamageSystem > 0 ? apDamageSystem : 0;
+    playerPokemonCalc.base["HP"] = playerPokemonCalc.base["HP"] - apDamageSystem;
+
+    
+    apDamagePlayer = apDamagePlayer > 0 ? apDamagePlayer : 0
+    systemPokemonCalc.base["HP"] = systemPokemonCalc.base["HP"] - apDamagePlayer;
+   
 
     let message = "";
     if (
@@ -92,18 +92,29 @@ const PokemonDetails = ({ pokemons, pImages }) => {
     setSystemHp(systemPokemonCalc.base["HP"]);
   };
 
+
   return (
     <>
       <div className="container">
         <div className="row">
           <div className="col-12 my-3">
-            <button type="button" className="btn btn-info" onClick={startGame}>
+            <button
+              type="button"
+              className="btn btn-info m-3"
+              onClick={startGame}
+            >
               Start Game
             </button>
-            <button type="button" className="btn btn-info" onClick={endGame}>
+
+            <button
+              type="button"
+              className="btn btn-info m-3"
+              onClick={endGame}
+            >
               End Game
             </button>
           </div>
+
           <div className="col-12 my-1">
             <p className="text-sucess">{winMessage}</p>
             <h3 className="text-danger">VS</h3>
@@ -116,12 +127,28 @@ const PokemonDetails = ({ pokemons, pImages }) => {
                 </div>
               </div> */}
               <div className="col-12">
+                <div className="progress">
+                  <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    aria-label="Success example"
+                    style={{width: playerHp + "%"}}
+                    aria-valuenow={playerHp}
+                    aria-valuemin= "0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
                 HP {playerHp}
               </div>
               <div className="col-12 p-3 hover-div bg-success">
                 <div className="card card-top hover-card m-0">
                   <div className="card-body">
-                  <div><img src={`${pImages}/${playerPokemon?.id}.png`}  alt="Images"/></div>
+                    <div>
+                      <img
+                        src={`${pImages}/${playerPokemon?.id}.png`}
+                        alt="Images"
+                      />
+                    </div>
                     <div className="row">
                       <h3>{playerPokemon?.name.english}</h3>
                       {getBaseInfoHtml(playerPokemon)}
@@ -142,12 +169,28 @@ const PokemonDetails = ({ pokemons, pImages }) => {
           <div className="col-6">
             <div className="row m-1">
               <div className="col-12">
-                HP {systemHp}
-              </div>
-              <div className="col-12 p-3 bg-primary">
+              <div className="progress">
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                   
+                    style={{width: systemHp + "%"}}
+                    aria-label="Success example"
+                    aria-valuenow={systemHp}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                HP {systemHp}</div>
+              <div className="col-12 p-3 bg-warning">
                 <div className="card card-top hover-card m-0">
                   <div className="card-body">
-                  <div><img src={`${pImages}/${systemPokemon?.id}.png`}  alt="Images"/></div>
+                    <div>
+                      <img
+                        src={`${pImages}/${systemPokemon?.id}.png`}
+                        alt="Pokemon"
+                      />
+                    </div>
                     <h3>{systemPokemon?.name.english}</h3>
                     {getBaseInfoHtml(systemPokemon)}
                     <h4>Type</h4>
