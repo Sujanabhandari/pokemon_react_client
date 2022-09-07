@@ -12,7 +12,7 @@ let playerPokemonCalc = {};
 let systemPokemonCalc = {};
 const winPoint = 0;
 
-const PokemonDetails = ({ pokemons }) => {
+const PokemonDetails = ({ pokemons, pImages }) => {
   const { id } = useParams();
   const [playerPokemon, setPlayerPokemon] = useState(null);
   const [systemPokemon, setSystemPokemon] = useState(null);
@@ -46,9 +46,10 @@ const PokemonDetails = ({ pokemons }) => {
   };
 
   const endGame = () => {
-  
+    
     console.log("CLICKED");
     clearInterval(playInterval);
+    // setWinMessage("New Game");
   };
 
   const play = () => {
@@ -58,7 +59,7 @@ const PokemonDetails = ({ pokemons }) => {
 
     let apDamageSystem =
       systemPokemonCalc.base["Attack"] - playerPokemonCalc.base["Defense"];
-console.log({ pokemon1:playerPokemonCalc.base["HP"],2:apDamageSystem})
+
     playerPokemonCalc.base["HP"] =
       playerPokemonCalc.base["HP"] - apDamageSystem > 0 ? apDamageSystem : 0;
       
@@ -80,6 +81,7 @@ console.log({ pokemon1:playerPokemonCalc.base["HP"],2:apDamageSystem})
     } else if (playerPokemonCalc.base["HP"] === systemPokemonCalc.base["HP"]) {
       message = "Match Draw";
     }
+    // else message="New Game"
 
     if (message.length > 0) {
       setWinMessage(message);
@@ -118,6 +120,7 @@ console.log({ pokemon1:playerPokemonCalc.base["HP"],2:apDamageSystem})
               <div className="col-12 p-3 hover-div bg-success">
                 <div className="card card-top hover-card m-0">
                   <div className="card-body">
+                  <div><img src={`${pImages}/${playerPokemon?.id}.png`}  alt="Images"/></div>
                     <div className="row">
                       <h3>{playerPokemon?.name.english}</h3>
                       {getBaseInfoHtml(playerPokemon)}
@@ -143,6 +146,7 @@ console.log({ pokemon1:playerPokemonCalc.base["HP"],2:apDamageSystem})
               <div className="col-12 p-3 bg-primary">
                 <div className="card card-top hover-card m-0">
                   <div className="card-body">
+                  <div><img src={`${pImages}/${systemPokemon?.id}.png`}  alt="Images"/></div>
                     <h3>{systemPokemon?.name.english}</h3>
                     {getBaseInfoHtml(systemPokemon)}
                     <h4>Type</h4>
