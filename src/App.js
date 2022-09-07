@@ -73,7 +73,6 @@ function App() {
         id="combo-box-demo"
         options={options}
         sx={{ width: 300 }}
-        InputProps={{ style: { fontSize: 50 } }}
         renderInput={(params) => <TextField {...params} label="Controllable" />}
       />
       </div>

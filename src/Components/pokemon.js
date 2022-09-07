@@ -31,11 +31,11 @@ const Pokemon = ({ pokemons }) => {
                 <div className="card-body">
                   <div className="row">
                     {pokemon.type.map((pokemontype, index) => (
-                      <p className="card-text p-height" key={index}>
+                      <div className="card-text p-height" key={index}>
                         <ul className="list-style-type: none">
                           <li>{pokemontype}</li>
                         </ul>
-                      </p>
+                      </div>
                     ))}
 
                     <br />
