@@ -27,7 +27,9 @@ const Pokemon = ({ pokemons, pImages }) => {
                     <h4>{pokemon.name.english}</h4>
 
                   </Link>
+                  
                   <div><img src={`${pImages}/${pokemon.id}.png`}  alt="Images"/></div>
+
                 </div>
 
                 <div className="card-body">

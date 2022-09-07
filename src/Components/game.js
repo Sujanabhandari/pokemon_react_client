@@ -34,10 +34,9 @@ export const getBaseInfoHtml = (pokemon) => {
         </>
     )
 }
-const timelapseSecond = 3600 * config.timelapse;
 
 export const getInitalValues = (pokemon) => {
-    let attackRate = Math.floor((pokemon.base["Speed"] * 1000) / timelapseSecond);
+    let attackRate = Math.floor((pokemon.base["Speed"] * config.timelapse) / 36 );
     return {
         attackRate: attackRate
     }
