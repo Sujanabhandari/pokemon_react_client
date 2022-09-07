@@ -1,6 +1,6 @@
 
 {
-    "timelapse": 400,
+    "timelapse": 800,
     "spAttackRange": [3, 10],
     "spDefenceRange": [3, 10]
 }
