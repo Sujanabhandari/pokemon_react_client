@@ -73,12 +73,12 @@ const PokemonDetails = ({ pokemons, pImages }) => {
       systemPokemonCalc.base["HP"] <= winPoint &&
       playerPokemonCalc.base["HP"] > winPoint
     ) {
-      message = "Congratulations, You won the match !!!";
+      message = `Congratulations ${playerPokemonCalc.name["english"]}, You won the match !!!`;
     } else if (
       playerPokemonCalc.base["HP"] <= winPoint &&
       systemPokemonCalc.base["HP"] > winPoint
     ) {
-      message = "Sorry, You Loose the match !!!";
+      message = `Sorry ${playerPokemonCalc.name["english"]}, You Loose the match !!!`;
     } else if (playerPokemonCalc.base["HP"] === systemPokemonCalc.base["HP"]) {
       message = "Match Draw";
     }
