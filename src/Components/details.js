@@ -1,5 +1,5 @@
 import { useParams, Link, Outlet } from "react-router-dom";
-import { getRandomInt, getBaseInfoHtml, getInitalValues } from "./game";
+import { getRandomInt, getBaseInfoHtml, getInitalValues, randomAttackInt } from "./game";
 import { useState, useEffect } from "react";
 import config from "../config.json";
 
@@ -52,16 +52,16 @@ const PokemonDetails = ({ pokemons, pImages }) => {
 
   const play = () => {
     let apDamagePlayer =
-      (playerPokemonCalc.base["Attack"] - systemPokemonCalc.base["Defense"]) * config.slowmo;
+      (randomAttackInt(playerPokemonCalc.base["Attack"])  - randomAttackInt(systemPokemonCalc.base["Defense"]) ) * config.slowmo;
     //82-90 = -8
     console.log(apDamagePlayer);
     let apDamageSystem =
-      (systemPokemonCalc.base["Attack"] - playerPokemonCalc.base["Defense"]) * config.slowmo;
+      (randomAttackInt(systemPokemonCalc.base["Attack"]) - randomAttackInt(playerPokemonCalc.base["Defense"])) * config.slowmo;
 
       console.log(apDamageSystem);
 
     apDamageSystem = apDamageSystem > 0 ? apDamageSystem : 0;
-    playerPokemonCalc.base["HP"] = playerPokemonCalc.base["HP"] - apDamageSystem;
+    playerPokemonCalc.base["HP"] = playerPokemonCalc.base["HP"] -apDamageSystem;
 
     
     apDamagePlayer = apDamagePlayer > 0 ? apDamagePlayer : 0
@@ -138,7 +138,7 @@ const PokemonDetails = ({ pokemons, pImages }) => {
                     aria-valuemax="100"
                   ></div>
                 </div>
-                HP {playerHp}
+                HP {playerHp.toFixed(2)}
               </div>
               <div className="col-12 p-3 hover-div bg-success">
                 <div className="card card-top hover-card m-0">
@@ -181,7 +181,7 @@ const PokemonDetails = ({ pokemons, pImages }) => {
                     aria-valuemax="100"
                   ></div>
                 </div>
-                HP {systemHp}</div>
+                HP {systemHp.toFixed(2)}</div>
               <div className="col-12 p-3 bg-warning">
                 <div className="card card-top hover-card m-0">
                   <div className="card-body">
