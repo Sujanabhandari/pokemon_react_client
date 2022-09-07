@@ -28,6 +28,7 @@ const PokemonDetails = ({ pokemons, pImages }) => {
 
   const startGame = () => {
     endGame();
+    setWinMessage("New Game");
     // Initialize player data
     playerPokemonCalc = JSON.parse(JSON.stringify(playerPokemon));
     setPlayerHp(playerPokemonCalc.base["HP"]);
