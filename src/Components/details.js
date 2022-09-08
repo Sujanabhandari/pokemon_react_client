@@ -12,8 +12,10 @@ const winPoint = 0;
 
 const PokemonDetails = ({ pokemons, pImages }) => {
   const { id } = useParams();
+
   const [playerPokemon, setPlayerPokemon] = useState(null);
   const [systemPokemon, setSystemPokemon] = useState(null);
+
   const [winMessage, setWinMessage] = useState("");
   const [playerHp, setPlayerHp] = useState(0);
   const [systemHp, setSystemHp] = useState(0);
@@ -21,7 +23,6 @@ const PokemonDetails = ({ pokemons, pImages }) => {
   useEffect(() => {
     const tempPokemon = pokemons?.filter((pokemon) => pokemon.id == id)[0];
     setPlayerPokemon(tempPokemon);
-    // playerPokemonCalc = JSON.parse(JSON.stringify(tempPokemon));
   }, [id, pokemons]);
 
   const startGame = () => {
@@ -29,38 +30,47 @@ const PokemonDetails = ({ pokemons, pImages }) => {
     setWinMessage("New Game");
     // Initialize player data
     playerPokemonCalc = JSON.parse(JSON.stringify(playerPokemon));
+
     setPlayerHp(playerPokemonCalc.base["HP"]);
     // Initialize system data
     systemPokemonId = getRandomInt(pokemons.length);
 
     setSystemPokemon(pokemons[systemPokemonId]);
+
     systemPokemonCalc = JSON.parse(JSON.stringify(pokemons[systemPokemonId]));
+
     setSystemHp(systemPokemonCalc.base["HP"]);
 
-    Object.assign(playerPokemonCalc, getInitalValues(playerPokemonCalc));
+    console.log("Object", Object.assign(playerPokemonCalc, getInitalValues(playerPokemonCalc)));
     Object.assign(systemPokemonCalc, getInitalValues(systemPokemonCalc));
 
     playInterval = setInterval(play, config.timelapse);
+
     console.log(playInterval);
   };
 
   const endGame = () => {
     console.log("CLICKED");
     clearInterval(playInterval);
-    // setWinMessage("New Game");
+  
   };
 
   const play = () => {
+
+    //Damage done by player
     let apDamagePlayer =
       (randomAttackInt(playerPokemonCalc.base["Attack"])  - randomAttackInt(systemPokemonCalc.base["Defense"]) ) * config.slowmo;
     //82-90 = -8
     console.log(apDamagePlayer);
+  
+    // Damaged done by system
     let apDamageSystem =
       (randomAttackInt(systemPokemonCalc.base["Attack"]) - randomAttackInt(playerPokemonCalc.base["Defense"])) * config.slowmo;
 
-      console.log(apDamageSystem);
+    console.log(apDamageSystem);
 
     apDamageSystem = apDamageSystem > 0 ? apDamageSystem : 0;
+
     playerPokemonCalc.base["HP"] = playerPokemonCalc.base["HP"] -apDamageSystem;
 
     
