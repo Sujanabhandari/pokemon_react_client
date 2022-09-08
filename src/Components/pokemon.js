@@ -4,38 +4,44 @@ import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const Pokemon = ({ pokemons }) => {
+const Pokemon = ({ pokemons, pImages }) => {
 
-  const [selectedOptions, setSelectedOptions] = useState([]);
 
   return (
     <>
       <div className="container">
         <div className="row ">
-          <h2>List of Pokemons</h2>
+          <h4 className="mt-3">Choose your pokemon</h4>
           {pokemons?.map((pokemon, index) => (
             <div
-              className="col-2 col-md-2 col-lg-2 hover-div bg-light border-style"
+              className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 p-2 mt-2 hover-div bg-light border-style"
               key={index}
             >
-              <div className="card card-top hover-card ">
+
+              <div className="card card-top hover-card card-height p-3">
                 <div>
                   <Link
                     to={`/pokemons/${pokemon.id}`}
                     className="text-decoration-none"
                   >
-                    <h4>{pokemon.name.english}</h4>
+                    <h5 className="text-dark">{pokemon.name.english}</h5>
+
                   </Link>
+                  
+                  <div><img src={`${pImages}/${pokemon.id}.png`}  alt="Images"/></div>
+
                 </div>
 
                 <div className="card-body">
                   <div className="row">
+                    
+                  
                     {pokemon.type.map((pokemontype, index) => (
-                      <p className="card-text p-height" key={index}>
-                        <ul className="list-style-type: none">
+                      <div className="card-text p-height" key={index}>
+                        <ul className="list-style-type: none p-0">
                           <li>{pokemontype}</li>
                         </ul>
-                      </p>
+                      </div>
                     ))}
 
                     <br />
@@ -43,9 +49,9 @@ const Pokemon = ({ pokemons }) => {
                   </div>
                 </div>
 
-                <div className="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                  <Link to={`/pokemons/${pokemon.id}/info`}>
-                    <h5>Details</h5>
+                <div className="card-footer text-muted d-flex justify-content-center bg-transparent border-top-0">
+                  <Link to={`/pokemons/${pokemon.id}/info`} className="btn btn-primary">
+                    Choose
                   </Link>
                 </div>
               </div>

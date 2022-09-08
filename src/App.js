@@ -7,9 +7,13 @@ import PokemonDetails from "./Components/details";
 
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import PokemonNavbar from "./Components/Navbar";
 
+const pImages = process.env.REACT_APP_POKEMON_IMAGES_URL;
+console.log("This is Images", pImages);
 
 function App() {
+  //useState() will be truthly from very beginning
   const [pokemons, setPokemons] = useState([]);
 
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -62,7 +66,8 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/"><h1>Pokemon App</h1></Link>
+      {/* <Link to="/" className="text-decoration-none text-black"><h1>Pokemon App</h1></Link> */}
+      <PokemonNavbar />
       <div className="autoCenter">
       <Autocomplete
         onChange={(event, newValue) => {
@@ -73,26 +78,24 @@ function App() {
         id="combo-box-demo"
         options={options}
         sx={{ width: 300 }}
-        InputProps={{ style: { fontSize: 50 } }}
-        renderInput={(params) => <TextField {...params} label="Controllable" />}
+        renderInput={(params) => <TextField {...params} label="Search Pokemon" />}
       />
       </div>
       
-
       <Routes>
-        <Route path="/" element={<Pokemon pokemons={selectedOptions} />} />
+        <Route path="/" element={<Pokemon pokemons={selectedOptions} pImages={pImages}/>} />
 
         <Route
           path="pokemons"
-          element={<Pokemon pokemons={selectedOptions} />}
+          element={<Pokemon pokemons={selectedOptions} pImages={pImages}/>}
         />
         <Route
           path="pokemons/:id"
-          element={<SinglePokemon pokemons={pokemons} />}
+          element={<SinglePokemon pokemons={pokemons} pImages={pImages}/>}
         />
         <Route
           path="pokemons/:id/info"
-          element={<PokemonDetails pokemons={pokemons} />}
+          element={<PokemonDetails pokemons={pokemons} pImages={pImages}/>}
         />
       </Routes>
     </div>

@@ -1,10 +1,11 @@
 import { useParams, Link, Outlet } from "react-router-dom";
 
+
 const SinglePokemon = ({ pokemons }) => {
 
   const { id } = useParams();
-  const clickedPokemon = pokemons?.filter((pokemon) => pokemon.id == id);
-
+  const clickedPokemon = pokemons?.filter((pokemon) => pokemon.id === +id);
+  
 
 return (
     <>
@@ -25,16 +26,16 @@ return (
                 <div className="card-body">
                   <div className="row">
                     {pokemon.type.map((pokemontype, index) => (
-                      <p className="card-text p-height" key={index}>
+                      <div className="card-text p-height" key={index}>
                         <ul className="list-style-type: none">
                           <li>{pokemontype}</li>
                         </ul>
-                      </p>
+                      </div>
                     ))}
 
                     <br />
                     <div>
-                      <p>{pokemon.base.Attack}</p>
+                      <p>{pokemon.base["Sp. Attack"]}</p>
                     </div>
                     <Link to={`/pokemons/${pokemon.id}/info`}><h3>Details</h3></Link>
                   </div>
