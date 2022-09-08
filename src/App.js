@@ -9,7 +9,8 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import PokemonNavbar from "./Components/Navbar";
 
-const pImages = process.env.REACT_APP_POKEMON_IMAGES_URL;
+const pImages = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+
 console.log("This is Images", pImages);
 
 function App() {
