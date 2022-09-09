@@ -50,7 +50,7 @@ const Pokemon = ({ pokemons, pImages }) => {
                 </div>
 
                 <div className="card-footer text-muted d-flex justify-content-center bg-transparent border-top-0">
-                  <Link to={`/pokemons/${pokemon.id}/info`} className="btn btn-primary">
+                  <Link to={`/pokemons/${pokemon.id}/info`} className="btn btn-primary-design">
                     Choose
                   </Link>
                 </div>

@@ -92,3 +92,9 @@
   height:auto;
   width: 150px;
 }
+.bg-dark{
+  background-color: #081f47 !important;
+}
+.btn-primary-design{
+  background-color: #e8dd61 !important;
+}

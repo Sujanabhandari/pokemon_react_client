@@ -40,6 +40,7 @@ export const randomAttackInt = (max) => {
 }
 
 export const getInitalValues = (pokemon) => {
+    
     let attackRate = Math.floor((pokemon.base["Speed"] * config.timelapse) / 36 );
     return {
         attackRate: attackRate
