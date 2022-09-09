@@ -31,9 +31,9 @@ function App() {
     const validateToken = async () => {
       try {
         const { data, error } = await getUser(token);
-        // if (error) {
-        //   throw new Error(error.response?.data.error || error.message);
-        // }
+        if (error) {
+          throw new Error(error.response?.data.error || error.message);
+        }
         setUser(data);
         setIsAuthenticated(true);
       } catch (error) {
@@ -89,6 +89,13 @@ function App() {
     }
     setSelectedOptions(results);
   }, [pokemons, value]);
+
+  // const logout = () => {
+  //   localStorage.removeItem("token");
+  //   setIsAuthenticated(false);
+  //   setToken(null);
+  //   setUser(null);
+  // };
 
   return (
     <div className="App">

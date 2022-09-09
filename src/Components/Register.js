@@ -28,6 +28,7 @@ const Register = ({ isAuthenticated, setIsAuthenticated, setToken }) => {
             throw new Error(error.response?.data.error || error.message);
           }
           localStorage.setItem("token", data.token);
+          console.log(data.token);
           setToken(data.token);
           setIsAuthenticated(true);
         } catch (error) {
@@ -35,7 +36,8 @@ const Register = ({ isAuthenticated, setIsAuthenticated, setToken }) => {
         }
       };
 
-  if (isAuthenticated) return <Navigate to="/" replace />;
+  // if (isAuthenticated) return <Navigate to="/" replace />;
+  if (isAuthenticated) return <p>Sucess</p>;
 
   return (
     <div className="row justify-content-center mt-3">
