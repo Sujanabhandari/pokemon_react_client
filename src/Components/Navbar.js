@@ -3,14 +3,14 @@ import { NavLink, Routes, Route, Link } from "react-router-dom";
 const PokemonNavbar = () => {
   return (
     <>
-      <div className="container">
+      <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
-          <div className="container-fluid">
+          <div className="container">
             <Link to="/" className="navbar-brand">
               <img
                 src="picalogo.png"
                 alt="pokemon"
-                className="image-design"
+                className="image-design" 
               ></img>
             </Link>
             <button
@@ -28,7 +28,7 @@ const PokemonNavbar = () => {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              {/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <>
                   <li className="nav-item">
                     <Link to="/login" className="nav-link active">
@@ -51,7 +51,7 @@ const PokemonNavbar = () => {
                     </p>
                   </li>
                 </>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </nav>

@@ -1,6 +1,6 @@
 import "./App.css";
 import { NavLink, Routes, Route, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, CSSProperties } from "react";
 import Pokemon from "./Components/pokemon";
 import SinglePokemon from "./Components/singlepokemon";
 import PokemonDetails from "./Components/details";
@@ -10,21 +10,32 @@ import Autocomplete from "@mui/material/Autocomplete";
 import PokemonNavbar from "./Components/Navbar";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { getUser } from "./utils/authUtils";
+import PacmanLoader from "react-spinners/ClipLoader";
 
 const pImages =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
+const override = {
+  display: "block",
+  margin: "0 auto",
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  borderWidth: "3px"
+};
+
 function App() {
   //useState() will be truthly from very beginning
   const [pokemons, setPokemons] = useState([]);
-
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [value, setValue] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
+  let [loading, setLoading] = useState(true);
+
 
   //validate Token
   useEffect(() => {
@@ -49,25 +60,19 @@ function App() {
     let acceptValue = true;
     // declare the async data fetching function
     const fetchData = async () => {
-      // get the data from the api
+      setLoading(true);
       const response = await fetch(
         `https://pokemon-fight-app.onrender.com/pokemons`
       );
-      // console.log(response)
-      // convert the data to json
-      const json = await response.json();
-      console.log("from results", json);
+      let json = await response.json();
       if (acceptValue) {
         setPokemons(json);
-        // setSelectedOptions(json);
+        setLoading(false);
       }
     };
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
 
-    // cancel any future `setData`
+    fetchData()
+      .catch(console.error);
     return () => (acceptValue = false);
   }, []);
 
@@ -77,25 +82,16 @@ function App() {
 
   useEffect(() => {
     let results = pokemons;
-    // setSelectedOptions(pokemons);
-    // value empty and null and undefined
     if (
       value && // 👈 null and undefined check
       Object.keys(value).length !== 0 &&
       Object.getPrototypeOf(value) === Object.prototype
     ) {
       results = pokemons.filter((pokemon) => pokemon.id === value.id);
-      console.log("from filter", results);
     }
     setSelectedOptions(results);
   }, [pokemons, value]);
 
-  // const logout = () => {
-  //   localStorage.removeItem("token");
-  //   setIsAuthenticated(false);
-  //   setToken(null);
-  //   setUser(null);
-  // };
 
   return (
     <div className="App">
@@ -155,6 +151,14 @@ function App() {
           element={<PokemonDetails pokemons={pokemons} pImages={pImages} />}
         />
       </Routes>
+      <PacmanLoader
+        color={"#e8dd61"}
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
   );
 }

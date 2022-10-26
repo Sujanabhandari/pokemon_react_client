@@ -41,16 +41,14 @@ const PokemonDetails = ({ pokemons, pImages }) => {
 
     setSystemHp(systemPokemonCalc.base["HP"]);
 
-    console.log("Object", Object.assign(playerPokemonCalc, getInitalValues(playerPokemonCalc)));
     Object.assign(systemPokemonCalc, getInitalValues(systemPokemonCalc));
 
     playInterval = setInterval(play, config.timelapse);
 
-    console.log(playInterval);
   };
 
   const endGame = () => {
-    console.log("CLICKED");
+
     clearInterval(playInterval);
   
   };
@@ -61,13 +59,12 @@ const PokemonDetails = ({ pokemons, pImages }) => {
     let apDamagePlayer =
       (randomAttackInt(playerPokemonCalc.base["Attack"])  - randomAttackInt(systemPokemonCalc.base["Defense"]) ) * config.slowmo;
     //82-90 = -8
-    console.log(apDamagePlayer);
+
   
     // Damaged done by system
     let apDamageSystem =
       (randomAttackInt(systemPokemonCalc.base["Attack"]) - randomAttackInt(playerPokemonCalc.base["Defense"])) * config.slowmo;
 
-    console.log(apDamageSystem);
 
     apDamageSystem = apDamageSystem > 0 ? apDamageSystem : 0;
 

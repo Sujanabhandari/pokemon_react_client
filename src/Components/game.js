@@ -13,10 +13,6 @@
 
 import config from '../config.json'
 
-console.log("config",config)
-
-
-
 export const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
 }
