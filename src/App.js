@@ -10,9 +10,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import PokemonNavbar from "./Components/Navbar";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { getUser } from "./utils/authUtils";
-import { store, toggled } from './Components/Services.js';
 import PacmanLoader from "react-spinners/ClipLoader";
 
 const pImages =
@@ -66,7 +65,6 @@ function App() {
         `https://pokemon-fight-app.onrender.com/pokemons`
       );
       let json = await response.json();
-      console.log("from results", json);
       if (acceptValue) {
         setPokemons(json);
         setLoading(false);
@@ -90,7 +88,6 @@ function App() {
       Object.getPrototypeOf(value) === Object.prototype
     ) {
       results = pokemons.filter((pokemon) => pokemon.id === value.id);
-      console.log("from filter", results);
     }
     setSelectedOptions(results);
   }, [pokemons, value]);

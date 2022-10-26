@@ -1,14 +1,8 @@
 import { Link } from "react-router-dom";
 import * as React from "react";
-import { useState } from "react";
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import ClipLoader from "react-spinners/ClipLoader";
-import  {store, toggled} from './Services';
 
 const Pokemon = ({ pokemons, pImages }) => {
-console.log("This is toggled", store.getState().value);
-const loadingValue = store.getState().value;
+
   return (
     <>
       <div className="container">

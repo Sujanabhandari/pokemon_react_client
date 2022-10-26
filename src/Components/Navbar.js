@@ -3,14 +3,14 @@ import { NavLink, Routes, Route, Link } from "react-router-dom";
 const PokemonNavbar = () => {
   return (
     <>
-      <div className="container">
+      <div className="container-fluid p-0">
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
-          <div className="container-fluid">
+          <div className="container">
             <Link to="/" className="navbar-brand">
               <img
                 src="picalogo.png"
                 alt="pokemon"
-                className="image-design"
+                className="image-design" 
               ></img>
             </Link>
             <button
